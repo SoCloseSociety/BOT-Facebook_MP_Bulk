@@ -75,8 +75,8 @@ driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()),optio
 driver.maximize_window()
 
 driver.get("https://www.facebook.com/login")
-driver.find_element(By.ID, "email").send_keys("talhaalavi1999@gmail.com")
-driver.find_element(By.ID, "pass").send_keys("Batpar2020")
+driver.find_element(By.ID, "email").send_keys(facebook_email)
+driver.find_element(By.ID, "pass").send_keys(facebook_password)
 driver.find_element(By.ID, "loginbutton").click()
 # WebDriverWait(driver, 10).until(
 #         EC.presence_of_element_located((By.ID, "myDynamicElement"))
@@ -103,22 +103,16 @@ with open('profile_links.csv', 'r', encoding="utf-8") as file:
                     print(d)
                     # print("Find")
                     my_xpath = str(xpath_soup(d))
-                    WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, my_xpath)))
+                    WebDriverWait(driver, 60000).until(EC.visibility_of_element_located((By.XPATH, my_xpath)))
                     driver.find_element(By.XPATH, my_xpath).click()
 
-                    WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, "//div[contains(text(),'Write to')]")))
-                    pyautogui.write('Hello world!')      
+                    WebDriverWait(driver, 60000).until(EC.visibility_of_element_located((By.XPATH, "//div[contains(text(),'Write to')]")))
+                    pyautogui.write(massage)      
                     pyautogui.press('enter')
-                    time.sleep(2)
-                    # html = driver.page_source
-                    # soup = BeautifulSoup(html, features="html.parser")
-                    # elem = soup.find(string=re.compile('Write to Kanji Royal'))
-                    # print(elem)
-                    # driver.find_element(By.XPATH, str(xpath_soup(elem))).click()
-                    # print()
-                    # print("Yes can")
-                    
-        
+                    time.sleep(4)
+                    print("Done")
+                    print("-----------------------------")
+                    break
 
 
 
